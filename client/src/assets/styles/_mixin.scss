@@ -1,0 +1,97 @@
+@mixin flex-center {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin d-flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+@mixin transition {
+    -webkit-transition: 0.3s ease-in;
+    -moz-transition: 0.3s ease-in;
+    -o-transition: 0.3s ease-in;
+    transition: 0.3s ease-in;
+}
+
+@mixin box-shadow {
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    -ms-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+@mixin cart-btn {
+    font-size: 14px;
+    font-weight: 600;
+    background: $primary-color;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid $primary-color;
+    padding: 4px 0px;
+    width: 140px;
+    display: block;
+    border-radius: 15px;
+    @include transition;
+    text-align: center;
+
+    &:focus {
+        outline: none;
+        background: transparent;
+        color: #333;
+    }
+}
+
+@mixin cart-btn-hover {
+    background: transparent;
+    color: #333;
+}
+
+@mixin icon-style {
+    font-size: 12px;
+    color: #fff;
+    display: inline-block;
+    border: 1px solid $primary-color;
+    background: $primary-color;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    line-height: 30px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50px;
+    @include transition;
+    @include flex-center;
+}
+
+@mixin icon-style-hover {
+    color: $primary-color;
+    background: transparent;
+}
+
+@mixin social-icon {
+    font-size: 14px;
+    color: #fff;
+    height: 35px;
+    width: 35px;
+    text-align: center;
+    margin: 0px 2px;
+    line-height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    @include transition;
+    @include flex-center;
+}
+
+@mixin social-icon-hover($color, $border-color) {
+    color: $color;
+    background: transparent;
+    border: 1px solid $border-color;
+}

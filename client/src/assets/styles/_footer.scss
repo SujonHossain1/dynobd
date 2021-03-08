@@ -1,0 +1,110 @@
+.offer-section {
+    background-color: #143250;
+    color: white;
+    padding: 15px 0;
+    font-size: 14px;
+    margin-top: 80px;
+}
+
+.offer {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.offer-icon a {
+    font-size: 25px;
+    color: #fff;
+}
+
+.offer-info {
+    margin-left: 20px;
+}
+
+.offer-info h4 {
+    font-size: 16px;
+    line-height: 26px;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+
+.footer {
+    background-color: #0a2138;
+    color: white;
+    font-size: 15px;
+}
+
+.footer-icon {
+    display: flex;
+
+    &-item {
+        @include social-icon;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 8px;
+        border: 1px solid #aaaaaa;
+        color: #aaaaaa;
+
+        &:hover {
+            background: #fff;
+            color: $primary-color;
+        }
+
+        span {
+            font-size: 17px;
+            display: flex;
+        }
+    }
+}
+
+.footer-info-area {
+    img {
+        margin-top: 40px;
+        width: 200px;
+    }
+}
+
+.footer .title {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.link-list li {
+    padding: 5px 0;
+    list-style: none;
+}
+
+.link-list li i {
+    margin-right: 5px;
+}
+
+.link-list li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.post {
+    display: flex;
+    margin: 10px 0;
+}
+
+.post-img {
+    max-width: 70px;
+}
+
+.post-details {
+    margin-left: 10px;
+}
+
+.post-details h6 {
+    font-size: 15px;
+    line-height: 20px;
+    color: #f0f5ff;
+    margin-bottom: 0px;
+}
+
+.post-details p {
+    font-size: 13px;
+}
