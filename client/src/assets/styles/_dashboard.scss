@@ -151,3 +151,43 @@
 .dashboard__content {
   margin-left: 300px;
 }
+
+/******           **********/
+.input__group {
+  position: relative;
+  margin-top: 10px;
+}
+
+.input__icon {
+  position: absolute;
+  right: 22px;
+  top: 11px;
+}
+.order__section {
+  padding: 15px;
+}
+.page__header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.page__header a {
+  margin: 0 10px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #333;
+  text-transform: uppercase;
+}
+.page__headline {
+  font-size: 21px;
+  font-weight: 600;
+  color: #5d5d5d;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .page__header {
+    display: block;
+    margin-bottom: 20px;
+  }
+}

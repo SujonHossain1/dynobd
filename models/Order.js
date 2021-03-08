@@ -17,12 +17,19 @@ const OrderSchema = new Schema({
         type: Number,
         required: true
     },
+    status:{
+        type:String,
+        default: 'Pending',
+        enum: ['Pending', 'Proccssed', 'Completed']
+    },
     products: [Object],
     address: [],
     paymentMethod: {
         type: String,
         required: true,
     }
+}, {
+    timestamps: true,
 });
 
 const Order = model('Order', OrderSchema);

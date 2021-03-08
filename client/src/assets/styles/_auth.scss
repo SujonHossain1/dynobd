@@ -291,3 +291,41 @@ h1.login-header {
   width: 20%;
   font-size: 15px;
 }
+.order__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.checkout__order__item {
+  // background: #f7f8fa;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 12px;
+}
+.checkout__order__item {
+  .checkout__order__content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 13px;
+  }
+  .checkout__order__img {
+    width: 80px;
+    height: 80px;
+  }
+  .checkout__order__content__item-edit {
+    display: flex;
+    line-height: 4px;
+    font-size: 13px;
+  }
+  .checkout__order__content__item-edit p:nth-child(1) {
+    font-weight: 600;
+    margin-right: 8px;
+  }
+}
+
+.checkout__order__date {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 11px;
+}

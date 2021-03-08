@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ChangePassword from './ChangePassword';
 import Events from './Event';
 import Information from './Information';
 import Orders from './Orders';
@@ -28,6 +29,7 @@ const Profile = () => {
                             {profileRoute === 'user-info' && <Information />}
                             {profileRoute === 'address' && <Events />}
                             {profileRoute === 'orders' && <Orders />}
+                            {profileRoute === 'changePassword' && <ChangePassword />}
                         </div>
                     </div>
                 </div>
