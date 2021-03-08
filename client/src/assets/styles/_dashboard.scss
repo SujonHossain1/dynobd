@@ -1,0 +1,153 @@
+.l-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 242px;
+  height: 100vh;
+  background-color: #12192c;
+  color: #fff;
+  padding: 1.5rem 1.5rem 2rem;
+  transition: 0.5s;
+  z-index: 100;
+}
+.l-navbar a:hover {
+  color: #fff !important;
+}
+
+/*===== NAV =====*/
+.sidenav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.nav__links {
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-anchor: none;
+}
+.nav__links::-webkit-scrollbar {
+  display: none;
+}
+
+.nav__brand {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.nav__toggle {
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #fff;
+  margin-left: 14px;
+  margin-right: 10px;
+}
+.nav__logo {
+  color: #fff;
+  font-weight: 600;
+}
+
+.nav__link {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  column-gap: 0.75rem;
+  padding: 0.75rem;
+  color: #fff;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.nav__link:hover {
+  background-color: #0c5df4;
+}
+.nav__icon {
+  font-size: 1.25rem;
+  color: #fff;
+}
+.nav__name {
+  font-size: 0.875rem;
+}
+
+.active {
+  background-color: #0c5df4;
+}
+
+/*===== COLLAPSE =====*/
+.collapse2 {
+  grid-template-columns: 20px max-content 1fr;
+}
+.collapse__link {
+  justify-self: flex-end;
+  transition: 0.5s;
+}
+.collapse__menu {
+  display: none;
+  transition: 0.3s;
+  padding-left: 2rem;
+  padding-top: 7px;
+}
+.collapse__sublink {
+  color: #b6cefc;
+  font-size: 0.875rem;
+  display: block;
+  width: max-content;
+  padding: 3px 0;
+}
+.collapse__sublink:hover {
+  color: #fff;
+}
+
+/*Show collapse*/
+.showCollapse {
+  display: block;
+  /* visibility: visible; */
+}
+
+/*Rotate icon*/
+.rotate {
+  transform: rotate(180deg);
+}
+
+.navbar {
+  background: #fff !important;
+  box-shadow: 0 -1px 8px -1px #333;
+}
+
+/************* HOme *******************/
+#transaction-area {
+  padding-top: 35px;
+}
+.deposit {
+  background: slateblue;
+}
+
+.withdraw {
+  background: salmon;
+}
+
+.balance {
+  background: orange;
+}
+.orders {
+  background: #0c5df4;
+}
+.box {
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+}
+.status-add {
+  box-shadow: 5px 4px 10px gray;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.dashboard__content {
+  margin-left: 300px;
+}

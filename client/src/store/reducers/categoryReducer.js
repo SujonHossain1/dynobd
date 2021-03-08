@@ -1,4 +1,4 @@
-import { GET_CATEGORIES } from "../actions/types";
+import { GET_CATEGORIES, GET_CATEGORIES_PRODUCTS } from "../actions/types";
 
 const init = {
     category: {},
@@ -13,6 +13,12 @@ const categoryReducer = (state = init, action) => {
                 ...state,
                 categories: action.payload.data
             }
+        case GET_CATEGORIES_PRODUCTS:
+            return {
+                ...state,
+                categoriesProducts: action.payload.data
+            }
+
         default:
             return state;
     }

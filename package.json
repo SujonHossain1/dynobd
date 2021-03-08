@@ -12,6 +12,8 @@
   "author": "Sujon Hossain",
   "license": "MIT",
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^26.0.0",
+    "@ckeditor/ckeditor5-react": "^3.0.1",
     "@sendgrid/mail": "^7.4.2",
     "bcryptjs": "^2.4.3",
     "concurrently": "^6.0.0",
@@ -24,7 +26,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.15",
     "morgan": "^1.10.0",
-    "node-cron": "^2.0.3"
+    "node-cron": "^2.0.3",
+    "react-countup": "^4.3.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

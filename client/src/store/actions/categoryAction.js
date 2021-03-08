@@ -1,4 +1,4 @@
-import { GET_CATEGORIES } from "./types";
+import { GET_CATEGORIES, GET_CATEGORIES_PRODUCTS } from "./types";
 
 export const getCategories = () => async dispatch => {
     try {
@@ -12,5 +12,20 @@ export const getCategories = () => async dispatch => {
         })
     } catch (err) {
         console.log(err)
+    }
+}
+
+export const getCategoriesProducts = () => async dispatch => {
+    try {
+        const res = await fetch('http://localhost:4000/api/categories/products');
+        const data = await res.json();
+        dispatch({
+            type: GET_CATEGORIES_PRODUCTS,
+            payload: {
+                data
+            }
+        })
+    } catch (err) {
+        console.log(err);
     }
 }

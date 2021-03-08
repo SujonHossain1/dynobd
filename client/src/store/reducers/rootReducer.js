@@ -6,6 +6,7 @@ import compareReducer from './compareReducer';
 import orderReducer from './orderReducer';
 import productReducer from './productReducer';
 import siteNav from './siteNav';
+import subCategoryReducer from './subCategoryReducer';
 import wishReducer from './wishReducer';
 
 const rootReducer = combineReducers({
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     compare: compareReducer,
     categories: categoryReducer,
     auth: authReducer,
-    order: orderReducer
+    order: orderReducer,
+    subCategories: subCategoryReducer,
 });
 
 export default rootReducer;

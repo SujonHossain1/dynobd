@@ -73,7 +73,7 @@ const NavbarBottom = () => {
                     <div className="col-lg-9 col-md-6">
                         <ul className="nav justify-content-end">
                             <li className="nav-item">
-                                <Link to="/faq" className="nav-link active" >FAQ</Link>
+                                <Link to="/faq" className="nav-link" >FAQ</Link>
                             </li>
                             <li className="nav-item">
                                 <Link to="/about-us" className="nav-link" >About Us</Link>

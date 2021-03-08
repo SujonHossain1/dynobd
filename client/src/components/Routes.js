@@ -8,6 +8,7 @@ import Category from './Category/Category';
 import Checkout from './Checkout/Checkout';
 import Compare from './Compare/Compare';
 import Contact from './Contact/Contact';
+import Dashboard from './Dashboard/Dashboard';
 import Faq from './FAQ/Faq';
 import Home from './Home/Home';
 import NotFound from './NotFound/NotFound';
@@ -96,6 +97,9 @@ const Routes = () => {
                 <Navbar />
                 <Compare />
                 <Footer />
+            </Route>
+            <Route path="/admin/dashboard">
+                <Dashboard/>
             </Route>
             <Route path="*">
                 <NotFound />
