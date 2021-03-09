@@ -139,9 +139,6 @@ const Category = ({ categoryUpdate, isUpdate }) => {
                         <label htmlFor="formFile" className="form-label">Image *  </label>
                         <img style={{ width: '120px' }} src={`http://localhost:4000/${categoryUpdate && categoryUpdate.categoryImage}`} alt="" />
                         <input onChange={imageHandler} accept=".png, .jpeg, .jpg" name="image" className="form-control" type="file"
-                        // ref={register({
-                        //     required: "Category Image is required",
-                        // })}
                         />
                         {errors.image && <span style={{ color: 'red' }}>{errors.image.message}</span>}
                     </div>

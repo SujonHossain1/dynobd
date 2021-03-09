@@ -10,12 +10,13 @@ exports.signUp = async (req, res, next) => {
             return res.status(400).send(errors.mapped());
         }
 
-        const { firstname, lastname, email, password } = req.body;
+        const { firstname, lastname, email, password, phone } = req.body;
         const user = await User.create({
             firstname,
             lastname,
             email,
-            password
+            password,
+            phone
         });
         res.status(201).send({
             message: 'Registration successfully.',
@@ -76,3 +77,29 @@ exports.login = async (req, res, next) => {
         console.log(err)
     }
 };
+
+exports.updatePassword = async (req, res, next) => {
+    try {
+
+        console.log(req.body);
+
+        const { oldPassword, newPassword } = req.body;
+        const user = await User.findOne({ _id: req.params.userId });
+
+        const match = await bcrypt.compare(oldPassword, user.password);
+        if (!match) return res.status(400).send({ message: "Incorrect Password" });
+
+        user.password = newPassword;
+        await user.save();
+
+        return res.status(200).send({
+            message: "Password Updated successfully",
+            success: true,
+        })
+
+    } catch (err) {
+        next(err);
+    }
+
+
+}

@@ -13,6 +13,33 @@ exports.orders = async (req, res, next) => {
     }
 }
 
+exports.orderTotalPrice = async (req, res, next) => {
+    try {
+        const price = await Order.aggregate([
+            { $match: { userId: req.params.id } },
+            { $group: { _id: "$userId", totalPrice: { $sum: "$totalPrice" } } }
+        ]);
+
+        res.status(200).send(price);
+
+    } catch (err) {
+        next(err);
+    }
+}
+
+exports.cancelOrder = async (req, res, next) => {
+    try {
+        const cancelOrder = await Order.findByIdAndDelete({ _id: req.params.id });
+        res.status(200).send({
+            message: 'Order cancelled',
+            success: true,
+            order: cancelOrder
+        })
+    } catch (err) {
+        next(err);
+    }
+}
+
 exports.addOrder = async (req, res, next) => {
     try {
         console.log(req.body);

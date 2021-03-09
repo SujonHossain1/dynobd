@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
-import { getCategoriesProducts } from '../../../store/actions/categoryAction';
-import AddProduct from '../Product/AddProduct';
+import { getProducts } from '../../../store/actions/productAction';
+import AddProduct from './AddProduct';
 
-const CategoryProducts = () => {
+const Stock = () => {
     const dispatch = useDispatch();
-    const { categoriesProducts } = useSelector(state => state.categories);
-    useEffect(() => {
-        dispatch(getCategoriesProducts())
-    }, [dispatch])
-    console.log(categoriesProducts);
-
+    const { products } = useSelector(state => state.products);
     const [product, setProduct] = useState({});
     const [isUpdate, setIsUpdate] = useState(false);
+
+    useEffect(() => {
+        dispatch(getProducts())
+    }, [dispatch]);
+
 
     const handleUpdateProduct = (product) => {
         setProduct(product);
         setIsUpdate(true);
     }
+
     const deleteProductHandler = (productId) => {
         const confirm = window.confirm('Are you sure you want to delete');
         if (confirm) {
@@ -38,45 +39,38 @@ const CategoryProducts = () => {
 
 
     return (
-        <div>
+        <div className="p-3">
             <ToastContainer />
             <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Product Name</th>
                         <th scope="col"> Image</th>
+                        <th scope="col">Stocks</th>
                         <th scope="col"> Update </th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {categoriesProducts ?
-                        categoriesProducts.length === 0 ?
-                            <h1>No Product Founds</h1>
+                    {products ?
+                        products.length === 0 ?
+                            <h3>Product Not Found</h3>
                             :
-                            categoriesProducts.map((category) => (
-                                <>
-                                    {category.products.length > 0 &&
-                                        <h4 className="btn btn-warning my-2"> {category.category} </h4>
-                                    }
-                                    {
-                                        category?.products.map(product => (
-                                            <tr key={product._id}>
-                                                <td> {product.title} </td>
-                                                <td> <img className="img-fluid" style={{ width: '80px' }} src={`http://localhost:4000/${product.image1}`} alt="" /> </td>
-                                                <td> <button onClick={() => handleUpdateProduct(product)} className="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"> Update</button> </td>
-                                                <td> <button onClick={() => deleteProductHandler(product._id)} className="btn btn-danger btn-sm"> Delete</button> </td>
-                                            </tr>
-                                        ))
-                                    }
-                                </>
+                            products.map(product => (
+                                <tr key={product._id}>
+                                    <td> {product.title} </td>
+                                    <td> <img className="img-fluid" style={{ width: '80px' }} src={`http://localhost:4000/${product.image1}`} alt="" /> </td>
+                                    <td className="text-center"> {product.stock}  </td>
+                                    <td> <button onClick={() => handleUpdateProduct(product)} className="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"> Update</button> </td>
+                                    <td> <button onClick={() => deleteProductHandler(product._id)} className="btn btn-danger btn-sm"> Delete</button> </td>
+                                </tr>
                             ))
                         :
                         <h3>Loading ........</h3>
                     }
-
                 </tbody>
             </table>
+
 
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl">
@@ -97,9 +91,8 @@ const CategoryProducts = () => {
                     </div>
                 </div>
             </div>
-
         </div>
     );
 };
 
-export default CategoryProducts;
+export default Stock;

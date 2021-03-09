@@ -2,6 +2,7 @@ import jwtDecode from 'jwt-decode';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaEnvelope, FaFacebookF, FaGoogle, FaLock, FaTwitter, FaUser } from 'react-icons/fa';
+import { ImPhone } from 'react-icons/im';
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -55,6 +56,7 @@ const Auth = () => {
                         lastname: '',
                         email: '',
                         password: '',
+                        phone: '',
                         confirmPassword: ''
                     })
                     setError({});
@@ -170,6 +172,30 @@ const Auth = () => {
                                 {error.lastname && <span className="bg-danger text-white px-2 rounded">{error.lastname}</span>}
                             </div>
                         </>
+                    }
+                    {newUser &&
+                        <div className="input-item">
+                            <label className="input-label">Phone Number</label>
+                            <div className="input-field">
+                                <span className="input-icon"><ImPhone /></span>
+                                <input
+                                    type="text"
+                                    name="phone"
+                                    onChange={inputHanlder}
+                                    placeholder="Phone Number"
+                                    ref={register({
+                                        required: "Phone Number is required",
+                                        pattern: {
+                                            value: /(^(\+88|0088)?(01){1}[3456789]{1}(\d){8})$/,
+                                            message: "Invalid Phone Number"
+                                        }
+                                    })}
+                                />
+                            </div>
+                            {errors.phone && <span className="bg-danger text-white px-2 rounded">{errors.phone.message}</span>}
+                            {error.phone && <span className="bg-danger text-white px-2 rounded">{error.phone}</span>}
+                        </div>
+
                     }
                     <div className="input-item">
                         <label className="input-label">Email Address</label>

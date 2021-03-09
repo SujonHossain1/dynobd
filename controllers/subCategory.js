@@ -62,6 +62,7 @@ exports.createSubCategory = async (req, res, next) => {
         const category = await Category.findOne({ _id: req.params.categoryId });
         const subCategory = await SubCategory.create({
             ...req.body,
+            subCategoryImage: image && image.name,
             category: category._id
         });
 
@@ -75,5 +76,18 @@ exports.createSubCategory = async (req, res, next) => {
 
     } catch (err) {
         res.status(500).send({ msg: err.message })
+    }
+}
+
+exports.deleteSubCategory = async (req, res, next) => {
+    try {
+        const subCategory = await SubCategory.findOneAndDelete({ _id: req.params.id });
+        res.status(200).send({
+            message: 'Sub Category deleted successfully.',
+            data: subCategory
+        });
+
+    } catch (err) {
+        res.status(400).send(err);
     }
 }

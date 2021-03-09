@@ -24,6 +24,11 @@ exports.registrationValidator = [
         })
         .normalizeEmail()
     ,
+    body('phone')
+        .not().isEmpty().withMessage('Phone Number is required')
+        .isNumeric().withMessage('Phone must be number')
+        .matches(/(^(\+88|0088)?(01){1}[3456789]{1}(\d){8})$/).withMessage('Phone Number Not Valid')
+    ,
     body('password')
         .not().isEmpty().withMessage('Password is required')
         .isLength({ min: 8 }).withMessage('Password must be at least 8 characters long')
@@ -46,7 +51,7 @@ exports.loginValidator = [
         .not().isEmpty().withMessage('Please Provide Email Or Phone')
         .custom(async email => {
             const user = await User.findOne({ email })
-            if (!user) throw new Error('Email or Password Wrong')
+            if (!user) throw new Error('Email Not Exists')
             return true;
         })
     ,
@@ -57,7 +62,7 @@ exports.loginValidator = [
 
             if (user) {
                 const match = await bcrypt.compare(password, user.password);
-                if (!match) throw new Error('Email or Password Wrong')
+                if (!match) throw new Error('Wrong Password')
             }
             return true
         })

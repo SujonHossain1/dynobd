@@ -20,6 +20,12 @@ const UserSchema = new Schema({
         required: true,
         lowercase: true,
     },
+    phone: {
+        type: String,
+        trim: true,
+        unique: true,
+        required: true,
+    },
     password: {
         type: String,
         required: true,
@@ -57,6 +63,7 @@ const UserSchema = new Schema({
 UserSchema.pre('save', async function (next) {
     const user = this;
     if (user.isModified('password')) {
+        // const salt = await bcrypt.salt
         user.password = await bcrypt.hash(user.password, 10);
     }
     next();
@@ -70,6 +77,8 @@ UserSchema.methods.getToken = function () {
         email: this.email,
         image: this.image,
         address: this.address,
+        phone: this.phone,
+        createdAt: this.createdAt,
         type: 'user'
     }, "hitheremynameissujonhossainiamadeveloper")
 }

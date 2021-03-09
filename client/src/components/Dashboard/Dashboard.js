@@ -5,10 +5,12 @@ import { Link, NavLink } from 'react-router-dom';
 import Categories from './Category/Categorires';
 import Category from './Category/Category';
 import CategoryProducts from './Category/CategoryProducts';
+import SubCategories from './Category/SubCategories';
 import SubCategory from './Category/SubCategory';
 import Home from './Home';
 import AddProduct from './Product/AddProduct';
 import Products from './Product/Products';
+import Stock from './Product/Stock';
 
 const Dashboard = ({ match, history, location }) => {
     console.log(match)
@@ -118,11 +120,17 @@ const Dashboard = ({ match, history, location }) => {
                     <Route path={`${match.path}/add-category`}>
                         <Category />
                     </Route>
-                    <Route path={`${match.path}/products`}>
+                    <Route exact path={`${match.path}/products`}>
                         <Products />
+                    </Route>
+                    <Route path={`${match.path}/products/stock`}>
+                        <Stock />
                     </Route>
                     <Route path={`${match.path}/add-sub-category`}>
                         <SubCategory />
+                    </Route>
+                    <Route path={`${match.path}/sub-categories`}>
+                        <SubCategories />
                     </Route>
                     <Route path={`${match.path}/categories-products`}>
                         <CategoryProducts />

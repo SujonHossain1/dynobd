@@ -1,34 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
-import { getProducts } from '../../../store/actions/productAction';
-import AddProduct from './AddProduct';
+import { getAllSubCategories } from '../../../store/actions/subCategoryAction';
+import SubCategory from './SubCategory';
 
-const Products = () => {
-    const dispatch = useDispatch();
-    const { products } = useSelector(state => state.products);
-    const [product, setProduct] = useState({});
+const SubCategories = () => {
+    const { allSubCategories } = useSelector(state => state.subCategories);
+    const [subCategoryUpdate, setSubCategoryUpdate] = useState({});
     const [isUpdate, setIsUpdate] = useState(false);
+    const [isDelete, setIsDelete] = useState(false);
+    const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getProducts())
-    }, [dispatch]);
-
-
-    const handleUpdateProduct = (product) => {
-        setProduct(product);
+    const categoryUpdateHandler = (category) => {
+        setSubCategoryUpdate(category);
         setIsUpdate(true);
     }
 
-    const deleteProductHandler = (productId) => {
+    console.log(allSubCategories)
+
+    useEffect(() => {
+        dispatch(getAllSubCategories())
+    }, [dispatch, isDelete, isUpdate]);
+
+    const categoryDeleteHandler = (subCatId) => {
         const confirm = window.confirm('Are you sure you want to delete');
         if (confirm) {
-            fetch(`http://localhost:4000/api/products/${productId}`, {
+            fetch(`/api/sub-categories/${subCatId}/sub-category`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
                 .then(data => {
                     toast.success(data.message);
+                    setIsDelete(true)
                     console.log(data);
                 })
                 .catch(err => {
@@ -39,28 +42,28 @@ const Products = () => {
 
 
     return (
-        <div className="p-3">
+        <div>
             <ToastContainer />
             <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Product Name</th>
-                        <th scope="col"> Image</th>
+                        <th scope="col"> Image </th>
                         <th scope="col"> Update </th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {products ?
-                        products.length === 0 ?
-                            <h3>Product Not Found</h3>
+                    {allSubCategories ?
+                        allSubCategories.length === 0 ?
+                            <h1>No Sub Category Found</h1>
                             :
-                            products.map(product => (
-                                <tr key={product._id}>
-                                    <td> {product.title} </td>
-                                    <td> <img className="img-fluid" style={{ width: '80px' }} src={`http://localhost:4000/${product.image1}`} alt="" /> </td>
-                                    <td> <button onClick={() => handleUpdateProduct(product)} className="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"> Update</button> </td>
-                                    <td> <button onClick={() => deleteProductHandler(product._id)} className="btn btn-danger btn-sm"> Delete</button> </td>
+                            allSubCategories.map(subCat => (
+                                <tr key={subCat._id}>
+                                    <td> {subCat.subCategory} </td>
+                                    <td> <img className="img-fluid" style={{ width: '80px' }} src={`/${subCat.subCategoryImage}`} alt="" /> </td>
+                                    <td> <button onClick={() => categoryUpdateHandler(subCat)} className="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#categoryModal"> Update</button> </td>
+                                    <td> <button onClick={() => categoryDeleteHandler(subCat._id)} className="btn btn-danger btn-sm"> Delete</button> </td>
                                 </tr>
                             ))
                         :
@@ -68,9 +71,7 @@ const Products = () => {
                     }
                 </tbody>
             </table>
-
-
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -78,8 +79,8 @@ const Products = () => {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <AddProduct
-                                updateProduct={product}
+                            <SubCategory
+                                subCategoryUpdate={subCategoryUpdate}
                                 isUpdate={isUpdate}
                             />
                         </div>
@@ -93,4 +94,4 @@ const Products = () => {
     );
 };
 
-export default Products;
+export default SubCategories;

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from 'react-toastify';
 import slugify from '../Slugify';
 
-const SubCategory = () => {
+const SubCategory = ({ subCategoryUpdate, isUpdate }) => {
     const { register, handleSubmit, errors, reset } = useForm();
     const [categories, setCategories] = useState([]);
     const [image, setImage] = useState(null);
@@ -11,6 +11,7 @@ const SubCategory = () => {
         category: '',
         subCategory: '',
         subCategorySlug: '',
+        subCategoryImage: ''
     });
 
     const { category, subCategorySlug } = subCategory;
@@ -24,7 +25,8 @@ const SubCategory = () => {
 
     useEffect(() => {
         setSubCategory({ ...subCategory, subCategorySlug: slugify(subCategory.subCategory) })
-    }, [subCategory.subCategory])
+    }, [subCategory.subCategory]);
+
 
     const handleImage = (e) => {
         const file = e.target.files[0];
@@ -41,16 +43,21 @@ const SubCategory = () => {
     }, []);
 
     const handleReset = () => {
-
         reset({
             category: '',
             subCategory: '',
             subCategorySlug: '',
         });
-
         setSubCategory({ subCategory: '' })
     }
 
+
+    useEffect(() => {
+        if (isUpdate) {
+            const { _id, subCategory, subCategoryImage, subCategorySlug, } = subCategoryUpdate;
+            setSubCategory({ _id, subCategory, subCategoryImage, subCategorySlug })
+        }
+    }, [subCategoryUpdate, isUpdate])
 
     const onSubmit = (data, event) => {
         event.preventDefault();
@@ -63,7 +70,10 @@ const SubCategory = () => {
             console.log(key, subCategory[key]);
         }
 
-        if (subCategorySlug && category && subCategory.subCategory) {
+        if (isUpdate) {
+            console.log('Yes Update', subCategory);
+
+        } else {
             fetch(`http://localhost:4000/api/sub-categories/${subCategory.category}/category`, {
                 method: 'POST',
                 body: formData
@@ -78,7 +88,6 @@ const SubCategory = () => {
                     console.error(err);
                     toast.error(data.error)
                 });
-
         }
 
     }

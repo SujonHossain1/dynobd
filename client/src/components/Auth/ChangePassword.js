@@ -1,17 +1,43 @@
+import { compareSync } from 'bcryptjs';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { AiOutlineHome, AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
 import { BsCaretRight } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 
 
 const ChangePassword = (props) => {
     const { register, handleSubmit, watch, reset, errors } = useForm();
+    const { user } = useSelector(state => state.auth);
 
-    const onSubmit = (data, event) => {
+    const onSubmit = async (data, event) => {
         event.preventDefault();
+
+        const res = await fetch(`http://localhost:4000/api/users/password-update/${user._id}`, {
+            method: 'PATCH',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const resData = await res.json();
+
+        if (res.status === 200) {
+            toast.success(resData.message);
+            console.log(resData);
+            reset({
+                oldPassword: '',
+                newPassword: '',
+                confirmPassword: '',
+            })
+        } else {
+            toast.error(resData.message);
+        }
+
     }
 
     return (
@@ -23,16 +49,16 @@ const ChangePassword = (props) => {
                     <BsCaretRight />
                     <Link to="#">CHANGE PASSWORD</Link>
                 </div>
-              
+
                 <form className="row  mx-1 " onSubmit={handleSubmit(onSubmit)}>
 
-                    <div className="col-lg-6 offset-lg-3 g-3 p-5 row shadow-sm ">
+                    <div className="col-lg-7 offset-lg-3 g-3 p-5 row shadow-sm ">
                         <div className="input__group">
                             <input
-                                type="text"
+                                type="password"
                                 className="form-control"
-                                placeholder="Old Passsword"
-                                name="oldPasssword"
+                                placeholder="Old Password"
+                                name="oldPassword"
                                 ref={register({
                                     required: "Old Password is required",
                                 })}
@@ -42,10 +68,10 @@ const ChangePassword = (props) => {
                         </div>
                         <div className="input__group">
                             <input
-                                type="text"
+                                type="password"
                                 className="form-control"
                                 placeholder="New Password"
-                                name="password"
+                                name="newPassword"
                                 ref={register({
                                     required: "New Password is required",
                                     minLength: {
@@ -60,12 +86,12 @@ const ChangePassword = (props) => {
 
                         <div className="input__group">
                             <input
-                                type="text"
+                                type="password"
                                 className="form-control"
                                 placeholder="Confirm New Password"
                                 name="confirmPassword"
                                 ref={register({
-                                    validate: (value) => value === watch('password')
+                                    validate: (value) => value === watch('newPassword')
                                 })}
                             />
                             <AiOutlineLock className="input__icon" />

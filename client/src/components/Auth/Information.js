@@ -1,8 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import moment from 'moment';
 
 const Information = () => {
     const { user } = useSelector(state => state.auth);
+    console.log(user);
     return (
         <div className="information">
             <div className="information__title">
@@ -36,7 +38,7 @@ const Information = () => {
                 </div>
                 <div className="information__body_item">
                     <p>Member Since: </p>
-                    <p>{user.since ? user.since : 'N/A'} </p>
+                    {/* <p>{user.createdAt ? moment.localeData(user.createdAt) : 'N/A'} </p> */}
                 </div>
             </div>
         </div>

@@ -172,7 +172,7 @@ const CheckoutForm = ({ navigation }) => {
                                 placeholder="Post Code"
                                 name="postCode"
                                 ref={register({
-                                    required: "Post Code is required",
+                                    required: false,
                                 })}
                             />
                             {errors.postCode && <span className="bg-danger text-white px-2 rounded">{errors.postCode.message}</span>}
