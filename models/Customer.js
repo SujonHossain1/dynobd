@@ -47,13 +47,13 @@ const UserSchema = new Schema({
     carts: [
         {
             type: Schema.Types.ObjectId,
-            ref: "Cart"
+            ref: "Product"
         }
     ],
     wishlists: [
         {
             type: Schema.Types.ObjectId,
-            ref: "Wishlist"
+            ref: "Product"
         }
     ]
 }, {

@@ -8,6 +8,7 @@ import CategoryProducts from './Category/CategoryProducts';
 import SubCategories from './Category/SubCategories';
 import SubCategory from './Category/SubCategory';
 import Home from './Home';
+import Order from './Order/Order';
 import AddProduct from './Product/AddProduct';
 import Products from './Product/Products';
 import Stock from './Product/Stock';
@@ -113,6 +114,9 @@ const Dashboard = ({ match, history, location }) => {
                 <Switch>
                     <Route exact path={`${match.path}`}>
                         <Home />
+                    </Route>
+                    <Route path={`${match.path}/orders`}>
+                        <Order />
                     </Route>
                     <Route path={`${match.path}/add-product`} >
                         <AddProduct />

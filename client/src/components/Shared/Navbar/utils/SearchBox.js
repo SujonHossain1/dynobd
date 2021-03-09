@@ -40,11 +40,27 @@ const SearchBox = () => {
         }
     }, [query]);
 
+    const handleHide = () => {
+        setHide(false);
+        console.log("Clicking");
+    }
+    function slugify(string) {
+        return string
+            .toString()
+            .trim()
+            .toLowerCase()
+            .replace(/\s+/g, "-")
+            .replace(/[^\w-]+/g, "")
+            .replace(/--+/g, "-")
+            .replace(/^-+/, "")
+            .replace(/-+$/, "");
+    };
+
     return (
         <div className="search__section">
             <div className="search-box-wrapper">
                 <div className="search-box">
-                    <div className="category-wrapper" id="catSelectForm">
+                    {/* <div className="category-wrapper" id="catSelectForm">
                         <select name="category" id="category_select" className="category">
                             <option value='all-category'>All Categories </option>
                             {categories && categories?.map(category => (
@@ -56,7 +72,7 @@ const SearchBox = () => {
                                 </option>
                             ))}
                         </select>
-                    </div>
+                    </div> */}
 
                     <form className="search-form" onSubmit={handleSearch}>
                         <input
@@ -64,7 +80,7 @@ const SearchBox = () => {
                             name="query"
                             onChange={(e) => setQuery(e.target.value)}
                             placeholder="Search For Product"
-                            onBlur={() => setHide(false)}
+                        // onBlur={() => setHide(false)}
                         />
                         <button type="submit"> <BiSearchAlt2 /> </button>
                     </form>
@@ -77,7 +93,7 @@ const SearchBox = () => {
                             <h1 className="search__not__found">No results found for query</h1>
                             :
                             searchProducts.map((product) => (
-                                <Link to={`/product/details/${product?.url}`} key={product.key}>
+                                <Link onClick={handleHide} to={`/product/details/${product?.url}`} key={product.key}>
                                     <div className="search__item" key={product._id}>
                                         <div className="search__item__image">
                                             <img className="img-fluid" src={`/${product?.image1}`} alt="" />
@@ -100,14 +116,3 @@ const SearchBox = () => {
 
 export default SearchBox;
 
-function slugify(string) {
-    return string
-        .toString()
-        .trim()
-        .toLowerCase()
-        .replace(/\s+/g, "-")
-        .replace(/[^\w-]+/g, "")
-        .replace(/--+/g, "-")
-        .replace(/^-+/, "")
-        .replace(/-+$/, "");
-};

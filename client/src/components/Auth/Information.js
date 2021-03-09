@@ -9,7 +9,7 @@ const Information = () => {
         <div className="information">
             <div className="information__title">
                 <h3>Personal Information </h3>
-                <button className="btn btn-secondary btn-sm mb-1">Edit</button>
+                <button className="btn btn-secondary btn-sm mb-1">Update</button>
             </div>
             <div className="information__body">
                 <div className="information__body_item">

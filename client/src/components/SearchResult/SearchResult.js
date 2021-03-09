@@ -5,7 +5,7 @@ import { getProducts } from '../../store/actions/productAction';
 import Product from '../Shared/Product/Product';
 
 const SearchResult = () => {
-    const [searchProducts, setSearchProducts] = useState([]);
+    const [searchProducts, setSearchProducts] = useState('');
     const dispatch = useDispatch();
     let query = useQuery();
     const queryValue = query.get('query');
@@ -14,6 +14,8 @@ const SearchResult = () => {
 
     useEffect(() => {
         if (queryValue) {
+            setSearchProducts('');
+
             fetch(`/api/products/search/${queryValue}`)
                 .then(res => res.json())
                 .then(data => {
@@ -33,17 +35,20 @@ const SearchResult = () => {
     return (
         <div className="container">
             <div className="row">
-                {searchProducts.length === 0 ?
-                    <h3 className="py-5 my-5">Product Not Found</h3>
+                {searchProducts ?
+                    searchProducts.length === 0 ?
+                        <h3 className="py-5 my-5">Product Not Found</h3>
+                        :
+                        searchProducts.map(product => (
+                            <div className="col-md-3 my-3">
+                                <Product
+                                    key={product._id}
+                                    product={product}
+                                />
+                            </div>
+                        ))
                     :
-                    searchProducts.map(product => (
-                        <div className="col-md-3 my-3">
-                            <Product
-                                key={product._id}
-                                product={product}
-                            />
-                        </div>
-                    ))
+                    <h3>Loading ......</h3>
                 }
             </div>
         </div>

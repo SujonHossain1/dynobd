@@ -2,12 +2,20 @@ const User = require('../models/Customer');
 const Order = require('../models/Order');
 
 exports.orders = async (req, res, next) => {
-    console.log(req.params)
     try {
         const user = await User.findOne({ _id: req.params.id })
             .populate('orders')
             .select('-password -_v');
         res.status(200).send(user);
+    } catch (err) {
+        next(err);
+    }
+}
+
+exports.getAllOrders = async (req, res, next) => {
+    try {
+        const orders = await Order.find({});
+        res.status(200).send(orders);
     } catch (err) {
         next(err);
     }
@@ -62,5 +70,18 @@ exports.addOrder = async (req, res, next) => {
 
     } catch (err) {
         next(err);
+    }
+}
+
+exports.addWishlist = async (req, res, next) => {
+    try {
+        const user = await User.findOne({ _id: req.params.userId });
+        const wishlist = req.body;
+
+        user.wishlists.push(...wishlist);
+        user.save();
+
+    } catch (err) {
+
     }
 }
