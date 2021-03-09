@@ -5,6 +5,10 @@ const OrderSchema = new Schema({
         type: String,
         required: true
     },
+    name: {
+        type: String,
+        default: 'Unname'
+    },
     phone: {
         type: String,
         required: true,
@@ -17,8 +21,8 @@ const OrderSchema = new Schema({
         type: Number,
         required: true
     },
-    status:{
-        type:String,
+    status: {
+        type: String,
         default: 'Pending',
         enum: ['Pending', 'Proccssed', 'Completed']
     },

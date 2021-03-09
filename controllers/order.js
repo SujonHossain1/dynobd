@@ -5,7 +5,7 @@ exports.orders = async (req, res, next) => {
     try {
         const user = await User.findOne({ _id: req.params.id })
             .populate('orders')
-            .select('-password -_v');
+            .select('-password -_v').sort('-orders.createdAt');
         res.status(200).send(user);
     } catch (err) {
         next(err);
@@ -14,7 +14,7 @@ exports.orders = async (req, res, next) => {
 
 exports.getAllOrders = async (req, res, next) => {
     try {
-        const orders = await Order.find({});
+        const orders = await Order.find({}).sort('-createdAt');
         res.status(200).send(orders);
     } catch (err) {
         next(err);

@@ -19,6 +19,7 @@ const CheckoutForm = ({ navigation }) => {
             userId: user._id,
             email,
             phone,
+            name: `${user.firstname} ${user.lastname}`,
             address: {
                 address,
                 city,

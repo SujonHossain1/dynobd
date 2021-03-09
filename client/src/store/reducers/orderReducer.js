@@ -4,6 +4,8 @@ const init = {
     products: [],
     userId: '',
     phone: '',
+    name: '',
+    email: '',
     address: [],
     paymentMethod: '',
     totalPrice: 0
@@ -17,7 +19,8 @@ const orderReducer = (state = init, action) => {
                 userId: action.payload.data.userId,
                 address: action.payload.data.address,
                 phone: action.payload.data.phone,
-                email: action.payload.data.email
+                email: action.payload.data.email,
+                name: action.payload.data.name
             }
         case PLACEMENT_PRODUCTS: {
             return {
@@ -25,19 +28,19 @@ const orderReducer = (state = init, action) => {
                 products: action.payload.products
             }
         }
-        case PLACEMENT_METHOD: 
+        case PLACEMENT_METHOD:
             return {
                 ...state,
                 paymentMethod: action.payload.method
             }
 
-        case TOTAL_PRICE:{
-            return{
+        case TOTAL_PRICE: {
+            return {
                 ...state,
                 totalPrice: action.payload.totalPrice
             }
         }
-        
+
         default:
             return state;
     }
