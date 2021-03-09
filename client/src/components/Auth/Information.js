@@ -38,7 +38,7 @@ const Information = () => {
                 </div>
                 <div className="information__body_item">
                     <p>Member Since: </p>
-                    {/* <p>{user.createdAt ? moment.localeData(user.createdAt) : 'N/A'} </p> */}
+                    <p>{user.createdAt ? moment(user.createdAt).format("DD MMM YYYY") : 'N/A'} </p>
                 </div>
             </div>
         </div>

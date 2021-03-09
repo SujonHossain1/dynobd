@@ -34,7 +34,7 @@ const ProfileRoutes = ({ profileRoute, profileRouteHanlder }) => {
                     onChange={profileRouteHanlder}
                 />
             </div>
-            <div className={profileRoute === 'address' ? 'profile-menu-item profile-active' : 'profile-menu-item'}>
+            {/* <div className={profileRoute === 'address' ? 'profile-menu-item profile-active' : 'profile-menu-item'}>
                 <label htmlFor="address">
                     <span className="profile-icon"> <GrLocation /> </span>
                     <span className="profile-route">Address</span>
@@ -46,7 +46,7 @@ const ProfileRoutes = ({ profileRoute, profileRouteHanlder }) => {
                     checked={profileRoute === 'address'}
                     onChange={profileRouteHanlder}
                 />
-            </div>
+            </div> */}
             <div className={profileRoute === 'orders' ? 'profile-menu-item profile-active' : 'profile-menu-item'}>
                 <label htmlFor="orders">
                     <span className="profile-icon"> <FaLuggageCart /> </span>
