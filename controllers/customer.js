@@ -3,6 +3,18 @@ const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const User = require('../models/Customer');
 
+
+
+exports.getUser = async (req, res, next) => {
+    try {
+        const user = await User.findOne({ _id: req.params.userId }).select('-password -_v -orders');
+        res.status(200).send(user);
+    } catch (err) {
+        next(err);
+    }
+}
+
+
 exports.signUp = async (req, res, next) => {
     try {
         const errors = validationResult(req).formatWith((error) => error.msg);
@@ -77,6 +89,47 @@ exports.login = async (req, res, next) => {
         console.log(err)
     }
 };
+
+exports.updateProfile = async (req, res, next) => {
+    let image = req.files && req.files.image;
+    try {
+        if (image) {
+            image.mv(`${__dirname}/uploads/${image && image.name}`, err => {
+                if (err) {
+                    return res.status(500).send({ message: 'Image  could not be uploaded' })
+                }
+            });
+        }
+
+
+        const { firstname, lastname, email, phone, gender, birthday, profileImage } = req.body;
+        const user = await User.findOneAndUpdate({ _id: req.params.userId },
+            {
+                $set: {
+                    firstname,
+                    lastname,
+                    email,
+                    phone,
+                    gender,
+                    birthday,
+                    image: image && image.name || profileImage
+                }
+            }
+        ).select('-password -__v -orders');
+
+        if (!user) {
+            return res.status(400).send({ message: 'User Not Found' });
+        }
+
+        res.status(200).send({
+            message: 'Update Profile',
+            data: user
+        });
+
+    } catch (err) {
+        next(err);
+    }
+}
 
 exports.updatePassword = async (req, res, next) => {
     try {

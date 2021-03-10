@@ -37,7 +37,7 @@ const NavbarBottom = () => {
                                 <ul className="category-list-wrapper">
 
 
-                                    {categories?.map((category) => (
+                                    {categories && categories?.map((category) => (
 
                                         <li className="dropdown-list" key={category._id}>
                                             <Link style={{ color: '#333' }} to={`/category/${category.categorySlug}`}>

@@ -54,7 +54,6 @@ const Category = ({ categoryUpdate, isUpdate }) => {
     const onSubmit = async (data, event) => {
         event.preventDefault();
         const formData = new FormData();
-
         if (image) formData.append('image', image);
 
         for (const key of Object.keys(category)) {
@@ -89,7 +88,7 @@ const Category = ({ categoryUpdate, isUpdate }) => {
                 } else {
                     toast.error(data.message);
                 }
-               
+
                 console.log(data);
             } catch (error) {
                 toast.error(error.error);

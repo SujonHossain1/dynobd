@@ -6,7 +6,7 @@ import Title from '../Title/Title';
 const Carousel = ({ isInfinite, isAutoPlay, products, title }) => {
     var settings = {
         dots: false,
-        infinite: isInfinite,
+        infinite: false,
         speed: 1000,
         slidesToShow: 4,
         slidesToScroll: 1,

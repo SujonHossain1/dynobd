@@ -31,12 +31,14 @@ const UserSchema = new Schema({
         required: true,
         minlength: [6, 'Password Must be 6 characters'],
     },
+    gender: String,
+    image: String,
+    birthday: Date,
 
     resetPasswordLink: {
         type: String,
         default: '',
     },
-    image: String,
     address: [Object],
     orders: [
         {
