@@ -18,7 +18,7 @@ const Information = () => {
     });
 
     useEffect(() => {
-        fetch(`http://localhost:4000/api/users/user/${user._id}`)
+        fetch(`https://dynobd-ecommerce.herokuapp.com/api/users/user/${user._id}`)
             .then(res => res.json())
             .then(data => {
                 const { firstname, lastname, email, phone, gender, birthday, image } = data;
@@ -61,7 +61,7 @@ const Information = () => {
             formData.append(key, profile[key]);
         };
 
-        const res = await fetch(`http://localhost:4000/api/users/profile-update/${user._id}`, {
+        const res = await fetch(`https://dynobd-ecommerce.herokuapp.com/api/users/profile-update/${user._id}`, {
             method: 'PATCH',
             body: formData
         });

@@ -10,7 +10,7 @@ const Order = () => {
     }
 
     useEffect(() => {
-        fetch('http://localhost:4000/api/orders')
+        fetch('https://dynobd-ecommerce.herokuapp.com/api/orders')
             .then(res => res.json())
             .then(data => setOrders(data || []))
             .catch(err => console.log(err))

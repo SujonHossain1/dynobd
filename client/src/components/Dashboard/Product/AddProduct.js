@@ -156,7 +156,7 @@ const AddProduct = ({ updateProduct, isUpdate }) => {
         const { category, subCategory } = data;
 
         if (isUpdate) {
-            fetch(`http://localhost:4000/api/products/${product.category}/${product.subCategory}/update-product`, {
+            fetch(`https://dynobd-ecommerce.herokuapp.com/api/products/${product.category}/${product.subCategory}/update-product`, {
                 method: 'PATCH',
                 body: formData,
             })
@@ -171,7 +171,7 @@ const AddProduct = ({ updateProduct, isUpdate }) => {
                 });
         } else {
             if (category && subCategory) {
-                fetch(`http://localhost:4000/api/products/${product.category}/${product.subCategory}/add-product`, {
+                fetch(`https://dynobd-ecommerce.herokuapp.com/api/products/${product.category}/${product.subCategory}/add-product`, {
                     method: 'POST',
                     body: formData,
                 })
@@ -299,22 +299,22 @@ const AddProduct = ({ updateProduct, isUpdate }) => {
                     </div>
                     <div className="mb-3">
                         <label htmlFor="formFile" className="form-label">Image 1 </label>
-                        <img className="img-fluid" style={{ width: '100px' }} src={`http://localhost:4000/${updateProduct?.image1}`} alt="" />
+                        <img className="img-fluid" style={{ width: '100px' }} src={`https://dynobd-ecommerce.herokuapp.com/${updateProduct?.image1}`} alt="" />
                         <input onChange={imageHandler1} accept=".png, .jpeg, .jpg" name="image1" className="form-control" type="file" filename="about.jpg" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="formFile" className="form-label">Image 2 </label>
-                        <img className="img-fluid" style={{ width: '100px' }} src={`http://localhost:4000/${updateProduct?.image2}`} alt="" />
+                        <img className="img-fluid" style={{ width: '100px' }} src={`https://dynobd-ecommerce.herokuapp.com/${updateProduct?.image2}`} alt="" />
                         <input onChange={imageHandler2} accept=".png, .jpeg, .jpg" name="image2" className="form-control" type="file" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="formFile" className="form-label">Image 3 </label>
-                        <img className="img-fluid" style={{ width: '100px' }} src={`http://localhost:4000/${updateProduct?.image3}`} alt="" />
+                        <img className="img-fluid" style={{ width: '100px' }} src={`https://dynobd-ecommerce.herokuapp.com/${updateProduct?.image3}`} alt="" />
                         <input onChange={imageHandler3} accept=".png, .jpeg, .jpg" name="image2" className="form-control" type="file" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="formFile" className="form-label">Image 4 </label>
-                        <img className="img-fluid" style={{ width: '100px' }} src={`http://localhost:4000/${updateProduct?.image4}`} alt="" />
+                        <img className="img-fluid" style={{ width: '100px' }} src={`https://dynobd-ecommerce.herokuapp.com/${updateProduct?.image4}`} alt="" />
                         <input onChange={imageHandler4} accept=".png, .jpeg, .jpg" name="image2" className="form-control" type="file" />
                     </div>
                     <div className="mb-3">

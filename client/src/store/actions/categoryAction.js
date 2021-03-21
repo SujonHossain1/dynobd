@@ -17,7 +17,7 @@ export const getCategories = () => async dispatch => {
 
 export const getCategoriesProducts = () => async dispatch => {
     try {
-        const res = await fetch('http://localhost:4000/api/categories/products');
+        const res = await fetch('https://dynobd-ecommerce.herokuapp.com/api/categories/products');
         const data = await res.json();
         dispatch({
             type: GET_CATEGORIES_PRODUCTS,

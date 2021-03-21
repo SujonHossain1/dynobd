@@ -22,7 +22,7 @@ const Payment = ({ navigation }) => {
 
     const confirmOrderHandler = async () => {
         if (payment) {
-            const res = await fetch('http://localhost:4000/api/orders/add-order', {
+            const res = await fetch('https://dynobd-ecommerce.herokuapp.com/api/orders/add-order', {
                 method: 'POST',
                 body: JSON.stringify(order),
                 headers: {

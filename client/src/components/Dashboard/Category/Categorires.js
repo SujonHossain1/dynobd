@@ -24,7 +24,7 @@ const Categories = () => {
     const categoryDeleteHandler = (categoryId) => {
         const confirm = window.confirm('Are you sure you want to delete');
         if (confirm) {
-            fetch(`http://localhost:4000/api/categories/${categoryId}`, {
+            fetch(`https://dynobd-ecommerce.herokuapp.com/api/categories/${categoryId}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
@@ -60,7 +60,7 @@ const Categories = () => {
                             categories.map(category => (
                                 <tr key={category._id}>
                                     <td> {category.category} </td>
-                                    <td> <img className="img-fluid" style={{ width: '80px' }} src={`http://localhost:4000/${category.categoryImage}`} alt="" /> </td>
+                                    <td> <img className="img-fluid" style={{ width: '80px' }} src={`https://dynobd-ecommerce.herokuapp.com/${category.categoryImage}`} alt="" /> </td>
                                     <td> <button onClick={() => categoryUpdateHandler(category)} className="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#categoryModal"> Update</button> </td>
                                     <td> <button onClick={() => categoryDeleteHandler(category._id)} className="btn btn-danger btn-sm"> Delete</button> </td>
                                 </tr>

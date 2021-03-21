@@ -21,7 +21,7 @@ const HomeCategory = ({ categories }) => {
                                                 <p className="count"> {category?.products.length} Item(s) </p>
                                             </div>
                                             <div className="right">
-                                                <img src={`http://localhost:4000/${category?.categoryImage}`} alt="" />
+                                                <img src={`https://dynobd-ecommerce.herokuapp.com/${category?.categoryImage}`} alt="" />
                                             </div>
                                         </Link>
                                     </div>

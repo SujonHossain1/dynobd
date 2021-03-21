@@ -29,7 +29,7 @@ const Home = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        fetch('http://localhost:4000/api/categories/products')
+        fetch('https://dynobd-ecommerce.herokuapp.com/api/categories/products')
             .then(res => res.json())
             .then(data => setCategoriesWithProduct(data))
             .catch(error => console.log(error))

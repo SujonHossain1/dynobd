@@ -17,7 +17,7 @@ const ChangePassword = (props) => {
     const onSubmit = async (data, event) => {
         event.preventDefault();
 
-        const res = await fetch(`http://localhost:4000/api/users/password-update/${user._id}`, {
+        const res = await fetch(`https://dynobd-ecommerce.herokuapp.com/api/users/password-update/${user._id}`, {
             method: 'PATCH',
             body: JSON.stringify(data),
             headers: {

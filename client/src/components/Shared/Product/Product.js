@@ -83,7 +83,7 @@ const Product = ({ product }) => {
                             </ul>
                         </div>
                         {image1 ?
-                            <img className="img-fluid" src={`http://localhost:4000/${image1}`} alt="" />
+                            <img className="img-fluid" src={`https://dynobd-ecommerce.herokuapp.com/${image1}`} alt="" />
                             :
                             <img src={imagePlacholder} alt="" />
                         }

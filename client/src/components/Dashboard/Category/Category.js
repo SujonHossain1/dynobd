@@ -61,7 +61,7 @@ const Category = ({ categoryUpdate, isUpdate }) => {
         };
 
         if (isUpdate) {
-            fetch(`http://localhost:4000/api/categories/${category._id}`, {
+            fetch(`https://dynobd-ecommerce.herokuapp.com/api/categories/${category._id}`, {
                 method: 'PATCH',
                 body: formData,
             })
@@ -78,7 +78,7 @@ const Category = ({ categoryUpdate, isUpdate }) => {
 
         } else {
             try {
-                const res = await fetch('http://localhost:4000/api/categories', {
+                const res = await fetch('https://dynobd-ecommerce.herokuapp.com/api/categories', {
                     method: 'POST',
                     body: formData,
                 });
@@ -136,7 +136,7 @@ const Category = ({ categoryUpdate, isUpdate }) => {
                     </div>
                     <div className="mb-3">
                         <label htmlFor="formFile" className="form-label">Image *  </label>
-                        <img style={{ width: '120px' }} src={`http://localhost:4000/${categoryUpdate && categoryUpdate.categoryImage}`} alt="" />
+                        <img style={{ width: '120px' }} src={`https://dynobd-ecommerce.herokuapp.com/${categoryUpdate && categoryUpdate.categoryImage}`} alt="" />
                         <input onChange={imageHandler} accept=".png, .jpeg, .jpg" name="image" className="form-control" type="file"
                         />
                         {errors.image && <span style={{ color: 'red' }}>{errors.image.message}</span>}

@@ -35,7 +35,7 @@ const SubCategory = ({ subCategoryUpdate, isUpdate }) => {
 
 
     useEffect(() => {
-        fetch('http://localhost:4000/api/categories')
+        fetch('https://dynobd-ecommerce.herokuapp.com/api/categories')
             .then(res => res.json())
             .then(data => setCategories(data))
             .catch(err => console.error(err));
@@ -74,7 +74,7 @@ const SubCategory = ({ subCategoryUpdate, isUpdate }) => {
             console.log('Yes Update', subCategory);
 
         } else {
-            fetch(`http://localhost:4000/api/sub-categories/${subCategory.category}/category`, {
+            fetch(`https://dynobd-ecommerce.herokuapp.com/api/sub-categories/${subCategory.category}/category`, {
                 method: 'POST',
                 body: formData
             })

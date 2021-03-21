@@ -23,7 +23,7 @@ const Products = () => {
     const deleteProductHandler = (productId) => {
         const confirm = window.confirm('Are you sure you want to delete');
         if (confirm) {
-            fetch(`http://localhost:4000/api/products/${productId}`, {
+            fetch(`https://dynobd-ecommerce.herokuapp.com/api/products/${productId}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
@@ -58,7 +58,7 @@ const Products = () => {
                             products.map(product => (
                                 <tr key={product._id}>
                                     <td> {product.title} </td>
-                                    <td> <img className="img-fluid" style={{ width: '80px' }} src={`http://localhost:4000/${product.image1}`} alt="" /> </td>
+                                    <td> <img className="img-fluid" style={{ width: '80px' }} src={`https://dynobd-ecommerce.herokuapp.com/${product.image1}`} alt="" /> </td>
                                     <td> <button onClick={() => handleUpdateProduct(product)} className="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"> Update</button> </td>
                                     <td> <button onClick={() => deleteProductHandler(product._id)} className="btn btn-danger btn-sm"> Delete</button> </td>
                                 </tr>
