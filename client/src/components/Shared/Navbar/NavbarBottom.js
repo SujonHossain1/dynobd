@@ -17,7 +17,6 @@ const NavbarBottom = () => {
             .then(res => res.json())
             .then(data => setCategorires(data))
             .catch(error => console.log(error))
-
     }, [])
 
     return (

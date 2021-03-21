@@ -35,9 +35,9 @@ cron.schedule('59 * * * *', async () => {
         </div>
       `
     }
-    sgMail.send(emailData)
-        .then(res => console.log(`Email has been sent to "m.sujon.hossain1@gmail.com"`))
-        .catch(err => console.error(err));
+    // sgMail.send(emailData)
+    //     .then(res => console.log(`Email has been sent to "m.sujon.hossain1@gmail.com"`))
+    //     .catch(err => console.error(err));
 
     console.log('running a task every minute');
 });

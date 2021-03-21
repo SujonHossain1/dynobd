@@ -4,7 +4,6 @@ import { BiHeart } from 'react-icons/bi';
 import { BsCheckCircle } from 'react-icons/bs';
 import { FaLuggageCart } from 'react-icons/fa';
 import { FiKey } from 'react-icons/fi';
-import { GrLocation } from 'react-icons/gr';
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { VscPreview } from 'react-icons/vsc';
 import { useSelector } from 'react-redux';
@@ -17,7 +16,7 @@ const ProfileRoutes = ({ profileRoute, profileRouteHanlder }) => {
     return (
         <div className="profile-menu shadow-sm">
             <div className="profile__user">
-                <img className="img-fluid profile__user__img" src={user.image ? user.image : image} alt="Profile" />
+                <img className="img-fluid profile__user__img" src={user.image ? `/${user.image}` : image} alt="Profile" />
                 <h3 className="profile__user__name"> {`${user.firstname} ${user.lastname}`} <BsCheckCircle className="profile__check__success" />  </h3>
                 <button className="profile__btn">Check Account</button>
             </div>

@@ -65,7 +65,7 @@ const NavbarMiddle = () => {
                                 <li className="my-dropdown">
                                     <Link to='/user/dashboard'>
                                         <div className="icon-wrapper">
-                                            <img src={user.image ? user.image : image} alt="" />
+                                            <img src={user.image ? `/${user.image}` : image} alt="" />
                                         </div>
                                     </Link>
                                 </li>

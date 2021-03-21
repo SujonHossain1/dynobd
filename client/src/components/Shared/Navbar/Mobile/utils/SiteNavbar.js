@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BiGift } from 'react-icons/bi'
 import { FaListUl, FaRegNewspaper } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux';
 import { siteNavFun } from '../../../../../store/actions/siteNav';
 import logo from '../../../../../assets/icons/dynoBD.png';
 import { Link } from 'react-router-dom';
+import image from '../../../../../assets/images/avatar.png';
 
 const SiteNavbar = () => {
     const { display, isOpen } = useSelector(state => state.siteNav);
@@ -35,6 +36,18 @@ const SiteNavbar = () => {
         }
     }, [isOpen]);
 
+    const [categories, setCategorires] = useState();
+
+    useEffect(() => {
+        fetch('/api/categories')
+            .then(res => res.json())
+            .then(data => setCategorires(data))
+            .catch(error => console.log(error))
+    }, [])
+
+    const { user, isAuth } = useSelector(state => state.auth);
+    console.log(user);
+
     return (
 
         <div className="side-menu-overlay" style={{ display: display }}>
@@ -44,82 +57,50 @@ const SiteNavbar = () => {
                     <span onClick={siteNav} id="times-icon" className="times-icon d-inline-block"> &times;</span>
                 </div>
 
-                <div className="side-menu-login" onClick={siteNav}>
-                    <div className="side-menu-img">
-                        {/* <img src="https://sujonhossain1.github.io/e-valy/images/icons/e-icon.png" alt="" /> */}
-                        <span>Account</span>
-                    </div>
-                    <div className="side-menu-login-btn">
-                        <Link to="/user/login" className="btn btn-outline-danger btn-block" style={{ width: '100%' }}> login </Link>
-                    </div>
+                <div className="side-menu-login text-center" onClick={siteNav}>
+                    {isAuth ?
+                        <Link to='/user/dashboard' style={{ textDecoration: 'none' }}>
+                            <img src={user.image ? `/${user.image}` : image} style={{ width: '80px', height: '80px', borderRadius: '50%' }} alt="" />
+                            <h4> {`${user.firstname} ${user.lastname}`} </h4>
+                        </Link>
+                        :
+                        (
+                            <>
+                                <div className="side-menu-img">
+                                    <span>Account</span>
+                                </div>
+                                <div className="side-menu-login-btn">
+                                    <Link to="/user/login" className="btn btn-outline-danger btn-block" style={{ width: '100%' }}> login </Link>
+                                </div>
+                            </>
+                        )
+                    }
+
                 </div>
 
                 <div className="side-menu-link" onClick={siteNav}>
 
-                    <Link to="/" className="side-menu-link-item">
-                        <div>
-                            <span className="side-menu-logo mr-3">
+                    {categories?.map(category => (
+                        <Link to={`/category/${category.categorySlug}`} className="side-menu-link-item">
+                            <div>
+                                <span className="side-menu-logo mr-3">
+                                    <FaListUl />
+                                </span>
+                                <span className="side-menu-text"> {category.category} </span>
+                            </div>
+                            <span className="side-menu-arrow">
                                 <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24"
                                     height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M17.21 9l-4.38-6.56c-.19-.28-.51-.42-.83-.42-.32 0-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.92 1.46h13c.92 0 1.69-.62 1.93-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1h-4.79zM9 9l3-4.4L15 9H9zm3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z">
-                                    </path>
+                                    <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path>
                                 </svg>
                             </span>
-                            <span className="side-menu-text">Products</span>
-                        </div>
-                        <span className="side-menu-arrow">
-                            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24"
-                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path>
-                            </svg>
-                        </span>
-                    </Link>
+                        </Link>
+                    ))
 
-                    <Link to="/" className="side-menu-link-item">
-                        <div>
-                            <span className="side-menu-logo mr-3">
-                                <FaRegNewspaper />
-                            </span>
-                            <span className="side-menu-text">News Feed</span>
-                        </div>
-                        <span className="side-menu-arrow">
-                            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24"
-                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path>
-                            </svg>
-                        </span>
-                    </Link>
+                    }
 
-                    <Link to="/" className="side-menu-link-item">
-                        <div>
-                            <span className="side-menu-logo mr-3">
-                                <BiGift />
-                            </span>
-                            <span className="side-menu-text">Giftcard</span>
-                        </div>
-                        <span className="side-menu-arrow">
-                            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24"
-                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path>
-                            </svg>
-                        </span>
-                    </Link>
 
-                    <Link to="/" className="side-menu-link-item">
-                        <div>
-                            <span className="side-menu-logo mr-3">
-                                <FaListUl />
-                            </span>
-                            <span className="side-menu-text">Orders</span>
-                        </div>
-                        <span className="side-menu-arrow">
-                            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24"
-                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path>
-                            </svg>
-                        </span>
-                    </Link>
+
                 </div>
 
                 <div className="customer-service mt-3">
