@@ -21,7 +21,7 @@ const middleware = [
     cookieParser()
 ];
 app.use(middleware);
-app.use(express.static(`./uploads`));
+app.use(express.static(`./controllers/uploads`));
 
 // Imports Routes
 require('./routes/routes')(app);

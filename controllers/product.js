@@ -57,7 +57,7 @@ exports.createProduct = async (req, res, next) => {
 
 
         if (image1) {
-            image1.mv(`../uploads/${image1 && image1.name}`, err => {
+            image1.mv(`${__dirname}/uploads/${image1 && image1.name}`, err => {
                 if (err) {
                     return res.status(500).send({ message: 'Image 1 could not be uploaded' })
                 }
@@ -65,21 +65,21 @@ exports.createProduct = async (req, res, next) => {
         }
 
         if (image2) {
-            image2.mv(`../uploads/${image2 && image2.name}`, err => {
+            image2.mv(`${__dirname}/uploads/${image2 && image2.name}`, err => {
                 if (err) {
                     return res.status(500).send({ message: 'Image 2 could not be uploaded' })
                 }
             });
         }
         if (image3) {
-            image3.mv(`../uploads/${image3 && image3.name}`, err => {
+            image3.mv(`${__dirname}/uploads/${image3 && image3.name}`, err => {
                 if (err) {
                     return res.status(500).send({ message: 'Image 2 could not be uploaded' })
                 }
             });
         }
         if (image4) {
-            image4.mv(`../uploads/${image4 && image4.name}`, err => {
+            image4.mv(`${__dirname}/uploads/${image4 && image4.name}`, err => {
                 if (err) {
                     return res.status(500).send({ message: 'Image 2 could not be uploaded' })
                 }
@@ -177,7 +177,7 @@ exports.updateProduct = async (req, res, next) => {
 
 
     if (image1) {
-        image1.mv(`../uploads/${image1 && image1.name}`, err => {
+        image1.mv(`${__dirname}/uploads/${image1 && image1.name}`, err => {
             if (err) {
                 return res.status(500).send({ message: 'Image 1 could not be uploaded' })
             }
@@ -185,21 +185,21 @@ exports.updateProduct = async (req, res, next) => {
     }
 
     if (image2) {
-        image2.mv(`../uploads/${image2 && image2.name}`, err => {
+        image2.mv(`${__dirname}/uploads/${image2 && image2.name}`, err => {
             if (err) {
                 return res.status(500).send({ message: 'Image 2 could not be uploaded' })
             }
         });
     }
     if (image3) {
-        image3.mv(`../uploads/${image3 && image3.name}`, err => {
+        image3.mv(`${__dirname}/uploads/${image3 && image3.name}`, err => {
             if (err) {
                 return res.status(500).send({ message: 'Image 2 could not be uploaded' })
             }
         });
     }
     if (image4) {
-        image4.mv(`../uploads/${image4 && image4.name}`, err => {
+        image4.mv(`${__dirname}/uploads/${image4 && image4.name}`, err => {
             if (err) {
                 return res.status(500).send({ message: 'Image 2 could not be uploaded' })
             }

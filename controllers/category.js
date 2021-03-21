@@ -59,7 +59,7 @@ exports.createCategory = async (req, res, next) => {
             return res.status(400).send({ error: 'Invalid extension' })
 
         if (image) {
-            image.mv(`../uploads/${image && image.name}`, err => {
+            image.mv(`${__dirname}/uploads/${image && image.name}`, err => {
                 if (err) {
                     return res.status(500).send({ message: 'Image 1 could not be uploaded' })
                 }
@@ -87,7 +87,7 @@ exports.updateCategory = async (req, res, next) => {
     let image = req.files && req.files.image;
     try {
         if (image) {
-            image.mv(`../uploads/${image && image.name}`, err => {
+            image.mv(`${__dirname}/uploads/${image && image.name}`, err => {
                 if (err) {
                     return res.status(500).send({ message: 'Image  could not be uploaded' })
                 }
