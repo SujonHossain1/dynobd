@@ -21,14 +21,14 @@ const ProductDetails = () => {
 
     useEffect(() => {
         setProduct(null);
-        fetch(`/api/products/${slug}`)
+        fetch(`https://dynobd-ecommerce.herokuapp.com/api/products/${slug}`)
             .then(res => res.json())
             .then(data => setProduct(data))
             .catch(error => console.log(error))
     }, [slug]);
 
     useEffect(() => {
-        fetch(`/api/categories/category/${product?.category?.categorySlug}`)
+        fetch(`https://dynobd-ecommerce.herokuapp.com/api/categories/category/${product?.category?.categorySlug}`)
             .then(res => res.json())
             .then(data => setRelatedProducts(data.products))
             .catch(error => console.log(error));

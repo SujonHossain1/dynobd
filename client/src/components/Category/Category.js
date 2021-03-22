@@ -23,7 +23,7 @@ const Category = () => {
         if (catSlug && !subCatSlug) {
             setCategoryProducts(null);
 
-            fetch(`/api/categories/category/${catSlug}`)
+            fetch(`https://dynobd-ecommerce.herokuapp.com/api/categories/category/${catSlug}`)
                 .then(res => res.json())
                 .then(data => setCategoryProducts(data))
                 .catch(error => console.log(error));
@@ -32,7 +32,7 @@ const Category = () => {
         if (catSlug && subCatSlug) {
             setSubCategoryProducts(null);
 
-            fetch(`/api/sub-categories/sub-category/${subCatSlug}`)
+            fetch(`https://dynobd-ecommerce.herokuapp.com/api/sub-categories/sub-category/${subCatSlug}`)
                 .then(res => res.json())
                 .then(data => setSubCategoryProducts(data))
                 .catch(error => console.log(error));

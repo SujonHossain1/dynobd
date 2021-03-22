@@ -24,6 +24,24 @@ export const wishSideNavFunc = (data) => {
     }
 };
 
+export const hideSearchBox = (action) => dispatch => {
+    if (action === 'open') {
+        dispatch({
+            type: 'SEARCH_BOX',
+            payload: {
+                searchOpen: true,
+            }
+        })
+    } else {
+        dispatch({
+            type: 'SEARCH_BOX',
+            payload: {
+                searchOpen: false,
+            }
+        })
+    }
+}
+
 export const cartSideBarAction = (action) => dispatch => {
     if (action === 'open') {
         dispatch({

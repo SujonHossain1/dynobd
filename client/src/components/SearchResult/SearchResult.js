@@ -16,7 +16,7 @@ const SearchResult = () => {
         if (queryValue) {
             setSearchProducts('');
 
-            fetch(`/api/products/search/${queryValue}`)
+            fetch(`https://dynobd-ecommerce.herokuapp.com/api/products/search/${queryValue}`)
                 .then(res => res.json())
                 .then(data => {
                     setSearchProducts(data);

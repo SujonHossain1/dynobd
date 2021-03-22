@@ -4,7 +4,8 @@ const initialState = {
     cartSideBar: false,
     display: 'none',
     cartSideNav: '0%',
-    wishSideNav: '0%'
+    wishSideNav: '0%',
+    searchShow: false,
 };
 
 const siteNav = (state = initialState, action) => {
@@ -25,6 +26,12 @@ const siteNav = (state = initialState, action) => {
                 ...state,
                 wishSideNav: action.payload
             }
+        case 'SEARCH_BOX': {
+            return {
+                ...state,
+                searchShow: action.payload.searchOpen ? action.payload.searchOpen : false,
+            }
+        }
 
         default:
             return state;

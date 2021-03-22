@@ -14,14 +14,14 @@ const Orders = () => {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        fetch(`/api/orders/order/${user._id}`)
+        fetch(`https://dynobd-ecommerce.herokuapp.com/api/orders/order/${user._id}`)
             .then(res => res.json())
             .then(data => setOrders(data.orders))
             .catch(err => console.log(err))
     }, [user._id, isCancelled]);
 
     useEffect(() => {
-        fetch(`/api/orders/total-price/${user._id}`)
+        fetch(`https://dynobd-ecommerce.herokuapp.com/api/orders/total-price/${user._id}`)
             .then(res => res.json())
             .then(data => setTotalPrice(data[0].totalPrice))
             .catch(error => console.log(error))
@@ -33,7 +33,7 @@ const Orders = () => {
         const isYes = window.confirm('Are you sure you want to cancel');
 
         if (isYes) {
-            const res = await fetch(`/api/orders/cancel-order/${id}`, {
+            const res = await fetch(`https://dynobd-ecommerce.herokuapp.com/api/orders/cancel-order/${id}`, {
                 method: 'DELETE'
             });
             const data = await res.json();

@@ -40,7 +40,7 @@ const Auth = () => {
         try {
             if (newUser) {
                 setLoading(true);
-                const res = await fetch('/api/users/sign-up', {
+                const res = await fetch('https://dynobd-ecommerce.herokuapp.com/api/users/sign-up', {
                     method: 'POST',
                     body: JSON.stringify(value),
                     headers: {
@@ -69,7 +69,7 @@ const Auth = () => {
 
             if (!newUser) {
                 setLoading(true);
-                const res = await fetch('/api/users/login', {
+                const res = await fetch('https://dynobd-ecommerce.herokuapp.com/api/users/login', {
                     method: 'POST',
                     body: JSON.stringify(value),
                     headers: {

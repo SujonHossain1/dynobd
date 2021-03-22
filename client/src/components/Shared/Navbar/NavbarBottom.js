@@ -13,7 +13,7 @@ const NavbarBottom = () => {
     const [categories, setCategorires] = useState();
 
     useEffect(() => {
-        fetch('/api/categories')
+        fetch('https://dynobd-ecommerce.herokuapp.com/api/categories')
             .then(res => res.json())
             .then(data => setCategorires(data))
             .catch(error => console.log(error))

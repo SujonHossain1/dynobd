@@ -25,7 +25,7 @@ const SubCategories = () => {
     const categoryDeleteHandler = (subCatId) => {
         const confirm = window.confirm('Are you sure you want to delete');
         if (confirm) {
-            fetch(`/api/sub-categories/${subCatId}/sub-category`, {
+            fetch(`https://dynobd-ecommerce.herokuapp.com/api/sub-categories/${subCatId}/sub-category`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())

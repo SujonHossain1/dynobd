@@ -2,7 +2,7 @@ import { GET_CATEGORIES, GET_CATEGORIES_PRODUCTS } from "./types";
 
 export const getCategories = () => async dispatch => {
     try {
-        const res = await fetch('/api/categories');
+        const res = await fetch('https://dynobd-ecommerce.herokuapp.com/api/categories');
         const data = await res.json();
         dispatch({
             type: GET_CATEGORIES,

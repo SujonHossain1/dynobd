@@ -16,7 +16,7 @@ const FilterArea = ({ categories }) => {
     console.log("open", open);
 
     return (
-        <div className="filter">
+        <div className="filter d-none d-md-block">
             <div className="filter-header">
                 <h4>Filter Results By</h4>
             </div>

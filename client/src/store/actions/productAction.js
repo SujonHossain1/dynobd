@@ -1,7 +1,7 @@
 import { GET_PRODUCTS, GET_SINGLE_PRODUCT } from "./types";
 
 export const getProducts = () => async dispatch => {
-    const res = await fetch('/api/products');
+    const res = await fetch('https://dynobd-ecommerce.herokuapp.com/api/products');
     const data = await res.json();
 
     dispatch({
@@ -13,7 +13,7 @@ export const getProducts = () => async dispatch => {
 }
 export const getSingleProduct = (slug) => async dispatch => {
     try {
-        const res = await fetch(`/api/products/${slug}`);
+        const res = await fetch(`https://dynobd-ecommerce.herokuapp.com/api/products/${slug}`);
         const data = await res.json();
         dispatch({
             type: GET_SINGLE_PRODUCT,
